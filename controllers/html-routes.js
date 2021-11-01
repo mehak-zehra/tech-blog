@@ -8,16 +8,27 @@ const Post = require('../models/Post');
 router.get('/', (req, res) => {
   let isLoggedIn = req.session.loggedIn;
   Post.findAll({
-    raw : true
+    attributes: {
+      include: [
+        [
+          sequelize.literal(`(
+            SELECT username
+            FROM User AS u
+            WHERE u.id = post.user_id
+          )`),
+          'username'
+        ]
+      ]
+    },
+    raw: true
   })
-  .then(allPosts => {
-    res.render('homepage', { allPosts, isLoggedIn })
-  })
-  .catch(err => {
-    console.log(err);
-    res.status(500).json(err);
-  });
-    
+    .then(allPosts => {
+      res.render('homepage', { allPosts, isLoggedIn })
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 router.get('/login', (req, res) => {
@@ -42,21 +53,20 @@ router.get('/dashboard', (req, res) => {
   if (!isLoggedIn) {
     res.redirect('/login');
   }
-  
+
   Post.findAll({
-      where: {
-        user_id: req.session.user_id
-      },
-      raw : true
+    where: {
+      user_id: req.session.user_id
+    },
+    raw: true
   })
-  .then(myPosts => {
-    res.render('dashboard', {myPosts})
-  })
-  .catch(err => {
-    console.log(err);
-    res.status(500).json(err);
-  });
-  
+    .then(myPosts => {
+      res.render('dashboard', { myPosts })
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 router.get('/create-a-post', (req, res) => {
@@ -65,7 +75,29 @@ router.get('/create-a-post', (req, res) => {
     res.redirect('/login');
   }
   let userId = req.session.user_id;
-  res.render('create-a-post', {userId});
+  res.render('create-a-post', { userId });
+});
+
+router.get('/edit-post', (req, res) => {
+  let isLoggedIn = req.session.loggedIn;
+  if (!isLoggedIn) {
+    res.redirect('/login');
+  }
+  
+  Post.findOne({
+    where: {
+      id: req.query.post_id
+    },
+    raw: true
+  })
+    .then(post => {
+      console.log(post)
+      res.render('edit-post', { post })
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 

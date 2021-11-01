@@ -8,35 +8,25 @@
     <button type="button" class="btn btn-dark btn-lg" onclick="goToCreatePostPage()">+ Create Post</button>
   </div>
 
-  <div id="accordion">
-    {{#each myPosts}}
-    <div class="card mb-3 pb-3">
-      <div class="card-header" id="headingOne">
-        <div class="d-flex flex-row justify-content-between">
-          <h3 class="mb-0">
-
-            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
-              aria-controls="collapseOne">
-              {{title}}
-            </button>
-          </h3>
-          <p>posted on {{date}}</p>
-        </div>
-      </div>
-
-      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-        <div class="card-body">
-          <div>
-            {{content}}
-          </div>
-          <div class="float-right">
-            <img class="clickable" src="/assets/images/icons8-trash-can-50.png" width="35" height="35">
+  {{#each myPosts}}
+  <div class="card mb-3">
+    <div class="card-body">
+      <h3 class="card-title">{{title}}</h3>
+      <p class="card-text">{{content}}</p>
+    </div>
+    <div class="card-footer">
+      <div class="d-flex flex-row justify-content-between">
+        <small class="text-muted">posted on {{date}}</small>
+        <div>
+          <img class="clickable" src="/assets/images/icons8-trash-can-50.png" width="35" height="35">
+          <a href="/edit-post?post_id={{id}}">
             <img class="clickable" src="/assets/images/icons8-edit-50.png" width="35" height="35">
-          </div>
+          </a>
         </div>
       </div>
     </div>
-    {{/each}}
   </div>
+  {{/each}}
+
 </div>
 <script src="assets/js/global.js"></script>

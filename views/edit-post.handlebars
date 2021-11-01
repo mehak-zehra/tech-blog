@@ -1,0 +1,25 @@
+<header>
+  {{> logged-in-header}}
+</header>
+
+<div class="basic-page container-fluid">
+  <form class="basic-form container p-4 mt-3" action="/api/blog/{{post.id}}" method="POST">
+    <h2 class="confirm-title">Edit Post</h2>
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input type="text" class="form-control form-control-lg" placeholder="Enter Title" name="title"
+        id="title" value="{{post.title}}">
+    </div>
+    <div class="form-group">
+      <label for="content">Content:</label>
+      <textarea class="form-control form-control-lg" placeholder="Write your blog post" name="content"
+        id="content">{{post.content}}</textarea>
+    </div>
+    <div class="form-group">
+      <input type="text" hidden name="user_id" value="{{post.userId}}">
+      <button type="submit" class="btn btn-dark btn-lg text-white">Update</button>
+      <button type="button" class="btn btn-outline-dark btn-lg" onclick="goToDashboardPage()">Cancel</button>
+    </div>
+  </form>
+</div>
+<script src="assets/js/global.js"></script>
