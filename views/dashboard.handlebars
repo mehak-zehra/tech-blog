@@ -18,7 +18,7 @@
       <div class="d-flex flex-row justify-content-between">
         <small class="text-muted">posted on {{date}}</small>
         <div>
-          <img class="clickable" src="/assets/images/icons8-trash-can-50.png" width="35" height="35">
+          <img class="clickable" src="/assets/images/icons8-trash-can-50.png" onclick="deletePost({{id}})" width="35" height="35">
           <a href="/edit-post?post_id={{id}}">
             <img class="clickable" src="/assets/images/icons8-edit-50.png" width="35" height="35">
           </a>

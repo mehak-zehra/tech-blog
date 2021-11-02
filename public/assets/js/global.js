@@ -14,86 +14,41 @@ function goToCreatePostPage() {
     window.location.href = "/create-a-post";
 }
 
-// // handle login flow
-// async function loginFormHandler(event) {
-//     event.preventDefault();
+// delete post with a specific post id
+async function deletePost(postId) {
+    const response = await fetch('/api/blog/'+postId, {
+        method: 'delete',
+        headers: { 'Content-Type': 'application/json' }
+    });
+    
+    // check the response status
+    if (response.ok) {
+        document.location.replace('/dashboard');
+    } else {
+        alert(response.statusText);
+    }
+}
 
-//     const email = document.querySelector('#emailAddress').value.trim();
-//     const password = document.querySelector('#passwordInput').value.trim();
+// update post with a specific post id
+async function updatePost(postId) {
 
-//     if (email && password) {
-//         const response = await fetch('/api/user/login', {
-//             method: 'post',
-//             body: JSON.stringify({
-//                 email,
-//                 password
-//             }),
-//             headers: { 'Content-Type': 'application/json' }
-//         });
+    const title = document.querySelector('#title').value.trim();
+    const content = document.querySelector('#content').value.trim();
 
-//         if (response.ok) {
-//             document.location.replace('/search');
-//         } else {
-//             alert(response.statusText);
-//         }
-//     }
-// }
+    if (title && content) {
+        const response = await fetch('/api/blog/'+postId, {
+            method: 'put',
+            body: JSON.stringify({
+                title,
+                content
+            }),
+            headers: { 'Content-Type': 'application/json' }
+        });
 
-// let loginFormEl = document.querySelector('.login-form');
-// if (loginFormEl) {
-//     loginFormEl.addEventListener('submit', loginFormHandler);
-// }
-
-// // handle signup flow
-// async function signupFormHandler(event) {
-//     event.preventDefault();
-
-//     const firstname = document.querySelector('#first-name').value.trim();
-//     const lastname = document.querySelector('#last-name').value.trim();
-//     const email = document.querySelector('#email-signup').value.trim();
-//     const password = document.querySelector('#password-signup').value.trim();
-
-//     if (firstname && lastname && email && password) {
-//         const response = await fetch('/api/user/signup', {
-//             method: 'post',
-//             body: JSON.stringify({
-//                 firstname,
-//                 lastname,
-//                 email,
-//                 password
-//             }),
-//             headers: { 'Content-Type': 'application/json' }
-//         });
-//         // check the response status
-//         if (response.ok) {
-//             document.location.replace('/search');
-//         } else {
-//             alert(response.statusText);
-//         }
-//     }
-// }
-
-// let signupFormEl = document.querySelector('.signup-form')
-// if (signupFormEl) {
-//     signupFormEl.addEventListener('submit', signupFormHandler);
-// }
-
-
-// // handle logout flow
-// async function logout() {
-//     const response = await fetch('/api/user/logout', {
-//         method: 'post',
-//         headers: { 'Content-Type': 'application/json' }
-//     });
-
-//     if (response.ok) {
-//         document.location.replace('/');
-//     } else {
-//         alert(response.statusText);
-//     }
-// }
-
-// let logoutEl = document.querySelector('#logout');
-// if (logoutEl) {
-//     logoutEl.addEventListener('click', logout);
-// }
+        if (response.ok) {
+            document.location.replace('/dashboard');
+        } else {
+            alert(response.statusText);
+        }
+    }
+}
