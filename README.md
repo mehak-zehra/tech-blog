@@ -28,35 +28,23 @@
     None
 
 ## Screenshots
-### Home Page
-  ![alt text](./public/assets/images/screenshots/homepage.png)
-### Signup Page
+### Signup Page:
   ![alt text](./public/assets/images/screenshots/signup.png)
-### Login Page
+### Login Page:
   ![alt text](./public/assets/images/screenshots/login.png)
-### Search Result Page
-  ![alt text](./public/assets/images/screenshots/search-page.png)
+### Home Page:
+  ![alt text](./public/assets/images/screenshots/home.png)
+### Single User Dashboard:
+  ![alt text](./public/assets/images/screenshots/single-user-dashboard.png)
 
-### List of All Venues
-![alt text](./public/assets/images/screenshots/list-venues.png)
+### Create Post:
+![alt text](./public/assets/images/screenshots/create-post.png)
 
-### Search with Location
-![alt text](./public/assets/images/screenshots/location.png)
-
-### Search with title
-![alt text](./public/assets/images/screenshots/title-search.png)
-
-### Single Venue Page with Details
-![alt text](./public/assets/images/screenshots/single-venue.png)
-
-### Booking Confirmation Page
-![alt text](./public/assets/images/screenshots/confirmation.png)
-
-### View Reservation Page
-![alt text](./public/assets/images/screenshots/reservation.png)
+### Edit Post
+![alt text](./public/assets/images/screenshots/edit-post.png)
 
 ### Logout Dropdown in Navbar
-![alt text](./public/assets/images/screenshots/logout-dropdown.png)
+![alt text](./public/assets/images/screenshots/logout-user.png)
 
   ## Technologies
 
@@ -67,16 +55,15 @@
     Sequelize ORM
     bcrypt
     NPM
-    New Package: uniqid() package for booking confirmation
     RestFull APIs (Get , Post)
-    HTML, CSS, Javascript, JQuery
+    HTML, CSS, Javascript
     Bootstrap
 
 ## Live Link
-
+https://mehak-tech-blog.herokuapp.com/
 
 ## GitHub Repo Link
-
+https://github.com/mehak-zehra/tech-blog
 
   ## Contributor  
   Mehak Zehra 
